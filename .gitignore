@@ -30,9 +30,11 @@ nosetests.xml
 *.mo
 
 # Mr Developer
+.idea
 .mr.developer.cfg
 .project
 .pydevproject
+.python-version
 
 # Vim
 *.sw[po]
