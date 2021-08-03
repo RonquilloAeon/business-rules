@@ -139,48 +139,65 @@ An example of the resulting python lists/dicts is:
 
 ```python
 rules = [
-# expiration_days < 5 AND current_inventory > 20
-{ "conditions": { "all": [
-      { "name": "expiration_days",
-        "operator": "less_than",
-        "value": 5,
-      },
-      { "name": "current_inventory",
-        "operator": "greater_than",
-        "value": 20,
-      },
-  ]},
-  "actions": [
-      { "name": "put_on_sale",
-        "params": {"sale_percentage": 0.25},
-      },
-  ],
-},
-
-# current_inventory < 5 OR (current_month = "December" AND current_inventory < 20)
-{ "conditions": { "any": [
-      { "name": "current_inventory",
-        "operator": "less_than",
-        "value": 5,
-      },
-    ]},
-      { "all": [
-        {  "name": "current_month",
-          "operator": "equal_to",
-          "value": "December",
-        },
-        { "name": "current_inventory",
-          "operator": "less_than",
-          "value": 20,
-        }
-      ]},
-  },
-  "actions": [
-    { "name": "order_more",
-      "params":{"number_to_order": 40},
+    # expiration_days < 5 AND current_inventory > 20
+    {
+       "conditions":{
+          "all":[
+             {
+                "name":"expiration_days",
+                "operator":"less_than",
+                "value":5
+             },
+             {
+                "name":"current_inventory",
+                "operator":"greater_than",
+                "value":20
+             }
+          ]
+       },
+       "actions":[
+          {
+             "name":"put_on_sale",
+             "params":{
+                "sale_percentage":0.25
+             }
+          }
+       ]
     },
-  ],
-}]
+    
+    # current_inventory < 5 OR (current_month = "December" AND current_inventory < 20)
+    {
+       "conditions":{
+          "any":[
+             {
+                "name":"current_inventory",
+                "operator":"less_than",
+                "value":5
+             }
+          ],
+          "all":[
+             {
+                "name":"current_month",
+                "operator":"equal_to",
+                "value":"December"
+             },
+             {
+                "name":"current_inventory",
+                "operator":"less_than",
+                "value":20
+             }
+          ]
+       },
+       "actions":[
+          {
+             "name":"order_more",
+             "params":{
+                "number_to_order":40
+             }
+          }
+       ]
+    }
+]
 ```
 
 ### Export the available variables, operators and actions
@@ -195,45 +212,82 @@ export_rule_data(ProductVariables, ProductActions)
 that returns
 
 ```python
-{"variables": [
-    { "name": "expiration_days",
-      "label": "Days until expiration",
-      "field_type": "numeric",
-      "options": []},
-    { "name": "current_month",
-      "label": "Current Month",
-      "field_type": "string",
-      "options": []},
-    { "name": "goes_well_with",
-      "label": "Goes Well With",
-      "field_type": "select",
-      "options": ["Eggnog", "Cookies", "Beef Jerkey"]}
-                ],
-  "actions": [
-    { "name": "put_on_sale",
-      "label": "Put On Sale",
-      "params": {"sale_percentage": "numeric"}},
-    { "name": "order_more",
-      "label": "Order More",
-      "params": {"number_to_order": "numeric"}}
-  ],
-  "variable_type_operators": {
-    "numeric": [ {"name": "equal_to",
-                  "label": "Equal To",
-                  "input_type": "numeric"},
-                 {"name": "less_than",
-                  "label": "Less Than",
-                  "input_type": "numeric"},
-                 {"name": "greater_than",
-                  "label": "Greater Than",
-                  "input_type": "numeric"}],
-    "string": [ { "name": "equal_to",
-                  "label": "Equal To",
-                  "input_type": "text"},
-                { "name": "non_empty",
-                  "label": "Non Empty",
-                  "input_type": "none"}]
-  }
+{
+   "variables":[
+      {
+         "name":"expiration_days",
+         "label":"Days until expiration",
+         "field_type":"numeric",
+         "options":[
+            
+         ]
+      },
+      {
+         "name":"current_month",
+         "label":"Current Month",
+         "field_type":"string",
+         "options":[
+            
+         ]
+      },
+      {
+         "name":"goes_well_with",
+         "label":"Goes Well With",
+         "field_type":"select",
+         "options":[
+            "Eggnog",
+            "Cookies",
+            "Beef Jerkey"
+         ]
+      }
+   ],
+   "actions":[
+      {
+         "name":"put_on_sale",
+         "label":"Put On Sale",
+         "params":{
+            "sale_percentage":"numeric"
+         }
+      },
+      {
+         "name":"order_more",
+         "label":"Order More",
+         "params":{
+            "number_to_order":"numeric"
+         }
+      }
+   ],
+   "variable_type_operators":{
+      "numeric":[
+         {
+            "name":"equal_to",
+            "label":"Equal To",
+            "input_type":"numeric"
+         },
+         {
+            "name":"less_than",
+            "label":"Less Than",
+            "input_type":"numeric"
+         },
+         {
+            "name":"greater_than",
+            "label":"Greater Than",
+            "input_type":"numeric"
+         }
+      ],
+      "string":[
+         {
+            "name":"equal_to",
+            "label":"Equal To",
+            "input_type":"text"
+         },
+         {
+            "name":"non_empty",
+            "label":"Non Empty",
+            "input_type":"none"
+         }
+      ]
+   }
 }
 ```
 
