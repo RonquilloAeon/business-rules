@@ -1,4 +1,4 @@
-import setuptools
+from setuptools import setup, find_packages
 
 from business_rules import __version__ as version
 
@@ -10,13 +10,14 @@ description = (
     "configured without code"
 )
 
-setuptools.setup(
+setup(
     name="business-rules",
     version=version,
     description="{0}\n\n{1}".format(description, history),
-    author="Venmo",
-    author_email="open-source@venmo.com",
-    url="https://github.com/venmo/business-rules",
-    packages=["business_rules"],
+    author="RonquilloAeon",
+    author_email="23411718+RonquilloAeon@users.noreply.github.com",
+    url="https://github.com/RonquilloAeon/business-rules",
     license="MIT",
+    packages=find_packages(),
+    python_requires=">=3.7,<4",
 )
