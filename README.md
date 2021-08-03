@@ -1,7 +1,17 @@
 business-rules
 ==============
 
-Based on [venmo/business-rules](https://github.com/venmo/business-rules).
+<p align="left">
+    <a href="https://github.com/RonquilloAeon/business-rules/actions" target="_blank">
+        <img src="https://github.com/RonquilloAeon/business-rules/workflows/CI/badge.svg" alt="Tests workflow status">
+    </a>
+    <a href="https://pypi.org/project/business-rules-reloaded/" target="_blank">
+        <img src="https://badge.fury.io/py/business-rules-reloaded.svg" alt="PyPI version">
+    </a>
+    <a href="https://pypi.org/project/business-rules-reloaded/" target="_blank">
+        <img src="https://img.shields.io/pypi/pyversions/business-rules-reloaded.svg" alt="PyPI Python versions">
+    </a>
+</p>
 
 As a software system grows in complexity and usage, it can become burdensome if
 every change to the logic/behavior of the system also requires you to write and
@@ -13,6 +23,12 @@ You might, for example, find this is a useful way for analysts to define
 marketing logic around when certain customers or items are eligible for a
 discount or to automate emails after users enter a certain state or go through
 a particular sequence of events.
+
+Based on [venmo/business-rules](https://github.com/venmo/business-rules).
+
+## Installation
+
+`pip install business-rules-reloaded`
 
 ## Usage
 
