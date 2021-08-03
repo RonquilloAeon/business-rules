@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: ['*']
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v2
+
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.9
+
+        - run: |
+            pip install nox
+
+        - name: Check formatting
+          run: nox --non-interactive -e format -- --check
+
+        - name: Run linter
+          run: nox --non-interactive -e lint
+
+        - name: Test
+          run: nox --non-interactive -e test

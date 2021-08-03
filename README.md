@@ -1,7 +1,7 @@
 business-rules
 ==============
 
-[![Build Status](https://travis-ci.org/venmo/business-rules.svg?branch=master)](https://travis-ci.org/venmo/business-rules)
+Based on [venmo/business-rules](https://github.com/venmo/business-rules)
 
 As a software system grows in complexity and usage, it can become burdensome if
 every change to the logic/behavior of the system also requires you to write and
@@ -14,10 +14,6 @@ marketing logic around when certain customers or items are eligible for a
 discount or to automate emails after users enter a certain state or go through
 a particular sequence of events.
 
-<p align="center">
-    <img src="http://cdn.memegenerator.net/instances/400x/36514579.jpg" />
-</p>
-
 ## Usage
 
 ### 1. Define Your set of variables
@@ -29,6 +25,15 @@ You define all the available variables for a certain kind of object in your code
 For example:
 
 ```python
+import datetime
+
+from business_rules.variables import (
+    BaseVariables,
+    numeric_rule_variable,
+    select_rule_variable,
+    string_rule_variable
+)
+
 class ProductVariables(BaseVariables):
 
     def __init__(self, product):
@@ -39,7 +44,7 @@ class ProductVariables(BaseVariables):
         return self.product.current_inventory
 
     @numeric_rule_variable(label='Days until expiration')
-    def expiration_days(self)
+    def expiration_days(self):
         last_order = self.product.orders[-1]
         return (last_order.expiration_date - datetime.date.today()).days
 
@@ -59,6 +64,12 @@ These are the actions that are available to be taken when a condition is trigger
 For example:
 
 ```python
+from business_rules.actions import (
+    BaseActions,
+    rule_action
+)
+from business_rules.operators import FIELD_NUMERIC
+
 class ProductActions(BaseActions):
 
     def __init__(self, product):
@@ -78,6 +89,12 @@ class ProductActions(BaseActions):
 If you need a select field for an action parameter, another -more verbose- syntax is available:
 
 ```python
+from business_rules.actions import (
+    BaseActions,
+    rule_action
+)
+from business_rules.operators import FIELD_SELECT
+
 class ProductActions(BaseActions):
 
     def __init__(self, product):
@@ -276,17 +293,3 @@ Note: to compare floating point equality we just check that the difference is le
 * `shares_at_least_one_element_with`
 * `shares_exactly_one_element_with`
 * `shares_no_elements_with`
-
-### Returning data to your client
-
-
-
-## Contributing
-
-Open up a pull request, making sure to add tests for any new functionality. To set up the dev environment (assuming you're using [virtualenvwrapper](http://docs.python-guide.org/en/latest/dev/virtualenvs/#virtualenvwrapper)):
-
-```bash
-$ mkvirtualenv business-rules
-$ pip install -r dev-requirements.txt
-$ nosetests
-```

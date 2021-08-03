@@ -11,7 +11,7 @@ description = (
 )
 
 setup(
-    name="business-rules",
+    name="business-rules-reloaded",
     version=version,
     description="{0}\n\n{1}".format(description, history),
     author="RonquilloAeon",
