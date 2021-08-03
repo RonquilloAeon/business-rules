@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-from business_rules import __version__ as version
+from business_rules.__version__ import __version__ as version
 
 with open("HISTORY.rst") as f:
     history = f.read()

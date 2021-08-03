@@ -1,7 +1,7 @@
 business-rules
 ==============
 
-Based on [venmo/business-rules](https://github.com/venmo/business-rules)
+Based on [venmo/business-rules](https://github.com/venmo/business-rules).
 
 As a software system grows in complexity and usage, it can become burdensome if
 every change to the logic/behavior of the system also requires you to write and
