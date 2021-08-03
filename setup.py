@@ -21,5 +21,5 @@ setup(
     long_description_content_type="text/markdown",
     license="MIT",
     packages=find_packages(),
-    python_requires=">=3.7,<4",
+    python_requires=">=3.7",
 )
